@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Manage, search, filter, and organize your tasks with TaskFlow."
+    >
+
+    <title>All Tasks | TaskFlow</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="logo">
+                <h2>TaskFlow</h2>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Main navigation">
+
+                <a href="dashboard.html" class="nav-link">
+                    Dashboard
+                </a>
+
+                <a href="tasks.html" class="nav-link active"
+                   aria-current="page">
+                    All Tasks
+                </a>
+
+                <a href="completed.html" class="nav-link">
+                    Completed
+                </a>
+
+                <a href="categories.html" class="nav-link">
+                    Categories
+                </a>
+
+                <a href="settings.html" class="nav-link">
+                    Settings
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- DARK BACKGROUND WHEN MOBILE MENU IS OPEN -->
+        <div
+            class="sidebar-overlay"
+            id="sidebar-overlay"
+            aria-hidden="true"
+        ></div>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- PAGE HEADER -->
+            <header class="page-header">
+
+                <div class="page-heading">
+
+                    <button
+                        type="button"
+                        id="menu-toggle"
+                        aria-label="Toggle navigation menu"
+                        aria-controls="sidebar"
+                        aria-expanded="false"
+                    >
+                        ☰
+                    </button>
+
+                    <div>
+                        <h1>All Tasks</h1>
+                        <p>Manage and organize all your tasks in one place.</p>
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-primary"
+                    id="open-task-form"
+                >
+                    + Add New Task
+                </button>
+
+            </header>
+
+            <!-- SEARCH AND FILTERS -->
+            <section class="task-toolbar" aria-label="Search and filter tasks">
+
+                <input
+                    type="search"
+                    id="task-search"
+                    placeholder="Search tasks by title..."
+                    aria-label="Search tasks by title"
+                >
+
+                <select id="status-filter" aria-label="Filter by status">
+                    <option value="all">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+
+                <select id="category-filter" aria-label="Filter by category">
+                    <option value="all">All Categories</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Study">Study</option>
+                    <option value="Other">Other</option>
+                </select>
+
+            </section>
+
+            <!-- ADD TASK FORM -->
+            <section id="task-form-section" hidden>
+
+                <h2>Create a New Task</h2>
+
+                <form id="task-form">
+
+                    <label for="task-title">Task Title</label>
+                    <input
+                        type="text"
+                        id="task-title"
+                        placeholder="Enter task title"
+                        required
+                        maxlength="120"
+                    >
+
+                    <label for="task-description">Description</label>
+                    <textarea
+                        id="task-description"
+                        placeholder="Describe your task"
+                    ></textarea>
+
+                    <label for="task-category">Category</label>
+                    <select id="task-category" required>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Study">Study</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+
+                    <label for="task-due-date">Due Date</label>
+                    <input type="date" id="task-due-date">
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="btn-primary">
+                            Save Task
+                        </button>
+
+                        <button type="button" id="cancel-task-form">
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- TASK LIST -->
+            <section class="all-tasks-section">
+
+                <div class="section-heading">
+                    <h2>Your Tasks</h2>
+                    <span id="filtered-task-count">0 tasks</span>
+                </div>
+
+                <div
+                    id="all-task-list"
+                    class="task-list"
+                    aria-live="polite"
+                ></div>
+
+                <p id="empty-tasks-message" hidden>
+                    No tasks match your search or filters.
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+ <script src="js/tasks.js" defer></script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,323 +6,131 @@
 
     <meta
         name="description"
-        content="Manage your daily tasks, deadlines, priorities, and productivity."
+        content="TaskFlow helps you organize tasks, manage deadlines, and track your productivity."
     >
 
-    <title>Dashboard | Task App</title>
+    <title>Welcome to TaskFlow</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js" defer></script>
 </head>
 
 <body>
-    <!-- Application Layout -->
-    <div class="app-layout">
 
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <a href="index.html" aria-label="Task App home">
-                    <h1>Task App</h1>
-                </a>
+<main class="hero">
+
+    <section class="hero-content">
+
+        <h1 class="welcome-brand"> Welcome to TaskFlow</h1>
+
+        <span class="eyebrow">
+            YOUR PERSONAL PRODUCTIVITY SPACE
+        </span>
+
+        <h2>
+            Organize your work.
+            <span>Achieve more.</span>
+        </h2>
+
+        <p class="hero-description">
+            Take control of your day with TaskFlow. Organize your
+            tasks, keep track of deadlines, monitor your progress,
+            and turn your goals into accomplishments.
+        </p>
+
+        <div class="hero-actions">
+            <a href="login.html" class="btn btn-primary">
+                Get Started →
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <span>✓</span> Organize tasks
             </div>
 
-            <nav class="sidebar-nav" aria-label="Main navigation">
-                <ul>
-                    <li>
-                        <a href="index.html" aria-current="page">
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tasks.html">My Tasks</a>
-                    </li>
-                    <li>
-                        <a href="tasks.html?view=today">Today</a>
-                    </li>
-                    <li>
-                        <a href="tasks.html?view=upcoming">Upcoming</a>
-                    </li>
-                    <li>
-                        <a href="completed.html">Completed</a>
-                    </li>
-                    <li>
-                        <a href="categories.html">Categories</a>
-                    </li>
-                    <li>
-                        <a href="settings.html">Settings</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+            <div class="feature">
+                <span>✓</span> Track progress
+            </div>
 
-        <!-- Main Application Area -->
-        <div class="main-area">
+            <div class="feature">
+                <span>✓</span> Stay productive
+            </div>
+        </div>
 
-            <!-- Header -->
-            <header class="topbar">
-                <button
-                    type="button"
-                    class="menu-toggle"
-                    aria-label="Toggle navigation"
-                    aria-expanded="false"
-                    aria-controls="sidebar-navigation"
-                >
-                    Menu
-                </button>
+    </section>
 
-                <div class="topbar-title">
-                    <h2>Dashboard</h2>
-                </div>
+    <section class="preview" aria-label="Sample dashboard preview">
 
-                <div class="user-menu">
-                    <span class="user-name">Guest User</span>
-                    <a href="settings.html">Profile</a>
-                </div>
-            </header>
+        <div class="preview-header">
+            <h2>My Overview</h2>
+            <span class="preview-date">Sample dashboard</span>
+        </div>
 
-            <!-- Dashboard Content -->
-            <main id="main-content" class="dashboard">
+        <div class="stat-grid">
 
-                <!-- Welcome Section -->
-                <section class="welcome-section">
-                    <div>
-                        <h2>Welcome to your Task App!</h2>
-                        <p>
-                            Organize your day and keep track of your
-                            responsibilities.
-                        </p>
-                    </div>
+            <div class="stat-card">
+                <p class="stat-label">Total Tasks</p>
+                <p class="stat-number">12</p>
+            </div>
 
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        id="open-task-form"
-                    >
-                        + Add Task
-                    </button>
-                </section>
+            <div class="stat-card">
+                <p class="stat-label">Completed</p>
+                <p class="stat-number">8</p>
+            </div>
 
-                <!-- Task Statistics -->
-                <section
-                    class="statistics"
-                    aria-labelledby="statistics-heading"
-                >
-                    <h2 id="statistics-heading">Task Overview</h2>
+            <div class="stat-card">
+                <p class="stat-label">In Progress</p>
+                <p class="stat-number">3</p>
+            </div>
 
-                    <div class="statistics-grid">
-                        <article class="stat-card">
-                            <h3>Total Tasks</h3>
-                            <p id="total-tasks">0</p>
-                        </article>
-
-                        <article class="stat-card">
-                            <h3>Pending</h3>
-                            <p id="pending-tasks">0</p>
-                        </article>
-
-                        <article class="stat-card">
-                            <h3>In Progress</h3>
-                            <p id="in-progress-tasks">0</p>
-                        </article>
-
-                        <article class="stat-card">
-                            <h3>Completed</h3>
-                            <p id="completed-tasks">0</p>
-                        </article>
-
-                        <article class="stat-card">
-                            <h3>Overdue</h3>
-                            <p id="overdue-tasks">0</p>
-                        </article>
-                    </div>
-                </section>
-
-                <!-- Task Creation Form -->
-                <section
-                    class="task-form-section"
-                    id="task-form-section"
-                    hidden
-                    aria-labelledby="task-form-heading"
-                >
-                    <h2 id="task-form-heading">Create a New Task</h2>
-
-                    <form id="task-form">
-                        <div class="form-group">
-                            <label for="task-title">Task Title</label>
-                            <input
-                                type="text"
-                                id="task-title"
-                                name="title"
-                                maxlength="200"
-                                placeholder="Enter task title"
-                                required
-                            >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="task-description">
-                                Description
-                            </label>
-                            <textarea
-                                id="task-description"
-                                name="description"
-                                rows="4"
-                                placeholder="Describe the task"
-                            ></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="task-category">Category</label>
-                            <select
-                                id="task-category"
-                                name="category"
-                            >
-                                <option value="">No category</option>
-                                <option value="work">Work</option>
-                                <option value="personal">Personal</option>
-                                <option value="study">Study</option>
-                                <option value="development">
-                                    Development
-                                </option>
-                                <option value="research">Research</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="task-priority">Priority</label>
-                            <select
-                                id="task-priority"
-                                name="priority"
-                                required
-                            >
-                                <option value="low">Low</option>
-                                <option value="medium" selected>
-                                    Medium
-                                </option>
-                                <option value="high">High</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="task-due-date">Due Date</label>
-                            <input
-                                type="date"
-                                id="task-due-date"
-                                name="due_date"
-                            >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="task-status">Status</label>
-                            <select id="task-status" name="status">
-                                <option value="pending">Pending</option>
-                                <option value="in_progress">
-                                    In Progress
-                                </option>
-                                <option value="completed">Completed</option>
-                            </select>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">
-                                Save Task
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                id="cancel-task-form"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
-                </section>
-
-                <!-- Search and Filter -->
-                <section
-                    class="task-controls"
-                    aria-label="Search and filter tasks"
-                >
-                    <div class="form-group">
-                        <label for="task-search">Search Tasks</label>
-                        <input
-                            type="search"
-                            id="task-search"
-                            placeholder="Search by task title..."
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status-filter">Filter by Status</label>
-                        <select id="status-filter">
-                            <option value="all">All Tasks</option>
-                            <option value="pending">Pending</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="priority-filter">
-                            Filter by Priority
-                        </label>
-                        <select id="priority-filter">
-                            <option value="all">All Priorities</option>
-                            <option value="high">High</option>
-                            <option value="medium">Medium</option>
-                            <option value="low">Low</option>
-                        </select>
-                    </div>
-                </section>
-
-                <!-- Today's Tasks -->
-                <section
-                    class="task-section"
-                    aria-labelledby="today-heading"
-                >
-                    <div class="section-heading">
-                        <h2 id="today-heading">Today's Tasks</h2>
-                        <a href="tasks.html?view=today">View All</a>
-                    </div>
-
-                    <div class="task-list" id="today-task-list">
-                        <!-- JavaScript will insert today's tasks here. -->
-
-                        <p class="empty-state">
-                            No tasks to display yet. Add your first task!
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Upcoming Tasks -->
-                <section
-                    class="task-section"
-                    aria-labelledby="upcoming-heading"
-                >
-                    <div class="section-heading">
-                        <h2 id="upcoming-heading">Upcoming Tasks</h2>
-                        <a href="tasks.html?view=upcoming">View All</a>
-                    </div>
-
-                    <div class="task-list" id="upcoming-task-list">
-                        <!-- JavaScript will insert upcoming tasks here. -->
-
-                        <p class="empty-state">
-                            No upcoming tasks.
-                        </p>
-                    </div>
-                </section>
-
-            </main>
-
-            <!-- Footer -->
-            <footer class="app-footer">
-                <p>&copy; 2026 Task App. All rights reserved.</p>
-            </footer>
+            <div class="stat-card">
+                <p class="stat-label">Pending</p>
+                <p class="stat-number">1</p>
+            </div>
 
         </div>
-    </div>
+
+        <h3 class="task-heading">Today's Tasks</h3>
+
+        <div class="task-item">
+            <span class="task-check done"></span>
+
+            <div class="task-details">
+                <p class="task-title">Plan weekly activities</p>
+                <p class="task-meta">Completed</p>
+            </div>
+
+            <span class="task-badge green">Done</span>
+        </div>
+
+        <div class="task-item">
+            <span class="task-check"></span>
+
+            <div class="task-details">
+                <p class="task-title">Work on my project</p>
+                <p class="task-meta">Due today</p>
+            </div>
+
+            <span class="task-badge">In progress</span>
+        </div>
+
+        <div class="task-item">
+            <span class="task-check"></span>
+
+            <div class="task-details">
+                <p class="task-title">Review pending tasks</p>
+                <p class="task-meta">Personal</p>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+    <footer class="footer">
+        <p>
+            © 2026 TaskFlow. Organize your tasks. Accomplish your goals.
+        </p>
+    </footer>
+
 </body>
 </html>

@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Organize your tasks, manage priorities, and stay productive."
+    >
+
+    <title>TaskFlow | Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <a href="index.html" class="brand">
+                <span class="brand-icon">✓</span>
+                <span>TaskFlow</span>
+            </a>
+
+            <p class="sidebar-label">WORKSPACE</p>
+
+            <nav class="sidebar-nav" aria-label="Main navigation">
+
+                <a href="tasks.html" class="nav-link">
+                    <span class="nav-icon">☷</span>
+                    My Tasks
+                </a>
+
+                <a href="tasks.html?view=today" class="nav-link">
+                    <span class="nav-icon">◷</span>
+                    Today
+                </a>
+
+                <a href="tasks.html?view=upcoming" class="nav-link">
+                    <span class="nav-icon">▣</span>
+                    Upcoming
+                </a>
+
+                <a href="completed.html" class="nav-link">
+                    <span class="nav-icon">✓</span>
+                    Completed
+                </a>
+                <a href="index.html" class="nav-link active"
+                   aria-current="page">
+                    <span class="nav-icon">▦</span>
+                    Logout
+                </a>
+            </nav>
+
+            <p class="sidebar-label">PREFERENCES</p>
+
+            <nav class="sidebar-nav" aria-label="Preferences">
+                <a href="categories.html" class="nav-link">
+                    <span class="nav-icon">◈</span>
+                    Categories
+                </a>
+
+                <a href="settings.html" class="nav-link">
+                    <span class="nav-icon">⚙</span>
+                    Settings
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-help">
+                    <div class="help-icon">?</div>
+                    <div>
+                        <strong>Need help?</strong>
+                        <p>Stay organized, one task at a time.</p>
+                    </div>
+                </div>
+
+                <a href="login.html" class="logout-link">
+                    Sign in / Log in
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="main-area">
+
+            <header class="topbar">
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Toggle sidebar"
+                    aria-controls="sidebar"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+
+                <div class="breadcrumb">
+                    Workspace <span>/</span> Dashboard
+                </div>
+
+                <div class="topbar-actions">
+                    <span class="today-date" id="current-date"></span>
+
+                    <a href="settings.html" class="avatar"
+                       aria-label="Open profile settings">
+                        G
+                    </a>
+                </div>
+            </header>
+
+            <main class="dashboard">
+
+                <!-- Welcome section -->
+                <section class="welcome-section">
+                    <div>
+                        <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+                        <h1>Good day, <span id="user-name">there</span>!</h1>
+                        <p class="welcome-description">
+                            Plan your day, focus on what matters, and
+                            make progress toward your goals.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="open-task-form"
+                        aria-controls="task-form-section"
+                        aria-expanded="false"
+                    >
+                        <span>+</span> Add New Task
+                    </button>
+                </section>
+
+                <!-- Task statistics -->
+                <section class="stats-grid" aria-label="Task statistics">
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Total Tasks</span>
+                            <span class="stat-icon icon-blue">▤</span>
+                        </div>
+                        <p class="stat-number" id="total-tasks">0</p>
+                        <p class="stat-note">All your tasks</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Pending</span>
+                            <span class="stat-icon icon-orange">◷</span>
+                        </div>
+                        <p class="stat-number" id="pending-tasks">0</p>
+                        <p class="stat-note">Waiting to be started</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">In Progress</span>
+                            <span class="stat-icon icon-purple">↗</span>
+                        </div>
+                        <p class="stat-number" id="in-progress-tasks">0</p>
+                        <p class="stat-note">Currently in progress</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Completed</span>
+                            <span class="stat-icon icon-green">✓</span>
+                        </div>
+                        <p class="stat-number" id="completed-tasks">0</p>
+                        <p class="stat-note">Tasks finished</p>
+                    </article>
+
+                </section>
+
+                <!-- Task creation form -->
+                <section
+                    class="task-form-section"
+                    id="task-form-section"
+                    hidden
+                    aria-labelledby="task-form-heading"
+                >
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">NEW TASK</p>
+                            <h2 id="task-form-heading">Create a task</h2>
+                        </div>
+                    </div>
+
+                    <form id="task-form">
+
+                        <div class="form-group">
+                            <label for="task-title">Task title *</label>
+                            <input
+                                type="text"
+                                id="task-title"
+                                name="title"
+                                placeholder="What do you need to do?"
+                                maxlength="200"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-description">Description</label>
+                            <textarea
+                                id="task-description"
+                                name="description"
+                                rows="3"
+                                placeholder="Add some details..."
+                            ></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="task-category">Category</label>
+                                <select id="task-category" name="category">
+                                    <option value="personal">Personal</option>
+                                    <option value="work">Work</option>
+                                    <option value="study">Study</option>
+                                    <option value="development">Development</option>
+                                    <option value="research">Research</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="task-priority">Priority</label>
+                                <select id="task-priority" name="priority">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="task-due-date">Due date</label>
+                                <input
+                                    type="date"
+                                    id="task-due-date"
+                                    name="due_date"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                Save Task
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="cancel-task-form"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+
+                    </form>
+                </section>
+
+                <!-- Main task area -->
+                <div class="content-grid">
+
+                    <section class="panel" aria-labelledby="today-heading">
+                        <div class="panel-header">
+                            <div>
+                                <p class="eyebrow">YOUR SCHEDULE</p>
+                                <h2 id="today-heading">Today's Tasks</h2>
+                            </div>
+
+                            <a href="tasks.html?view=today" class="text-link">
+                                View all →
+                            </a>
+                        </div>
+
+                        <div class="task-list" id="today-task-list">
+                            <div class="empty-state">
+                                <span class="empty-icon">✓</span>
+                                <h3>No tasks yet</h3>
+                                <p>Add your first task and start making progress.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="upcoming-heading">
+                        <div class="panel-header">
+                            <div>
+                                <p class="eyebrow">COMING UP</p>
+                                <h2 id="upcoming-heading">Upcoming Tasks</h2>
+                            </div>
+
+                            <a href="tasks.html?view=upcoming" class="text-link">
+                                View all →
+                            </a>
+                        </div>
+
+                        <div class="task-list" id="upcoming-task-list">
+                            <div class="empty-state">
+                                <span class="empty-icon">◷</span>
+                                <h3>Nothing scheduled</h3>
+                                <p>Your upcoming tasks will appear here.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <footer class="app-footer">
+                    <p>TaskFlow &copy; <span id="current-year">2026</span>.
+                       Built for a more organized day.</p>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+</body>
+</html>
